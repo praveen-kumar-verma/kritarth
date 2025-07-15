@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Akash Missile Control Panel</title>
+    <link rel="stylesheet" href="./style.css" />
+
+    <style>
+            html, body {
+            height: 100%;
+            margin: 0;
+            padding:0;
+            overflow: hidden; 
+            background-image: url("miss.jpg") !important;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+           
+            align-items: center;
+            max-width: none;
+        }
+        .container {
+            max-width: none;
+            background-color: lightblue;
+            text-align: center;
+            padding: 20px;
+            .d-flex{
+                display: flex;
+                justify-content: space-between;
+            }
+            .ldt, .ldb{
+                padding-left: 8px;
+                padding-right: 8px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container p-4">
+
+        <div class="text-center">
+            <h1>
+                RUGGEDISED CONTROL PANEL
+
+            </h1>
+        </div>
+
+        <div class="d-flex justify-content-between pt-5">
+            <div class="panel pe-5">
+                <div class="display-box d-flex" id="leftDisplay"></div>
+    
+                <div class="leds">
+                    <div class="led" id="led1"></div>
+                    <div class="led" id="led6"></div>
+    
+                    <div class="led" id="led2"></div>
+                    <div class="led" id="led7"></div>
+    
+                    <div class="led" id="led3"></div>
+                    <div class="led" id="led8"></div>
+    
+                    <div class="led" id="led4"></div>
+                    <div class="led" id="led9"></div>
+    
+                    <div class="led" id="led5"></div>
+                    <div class="led" id="led10"></div>
+                </div>
+    
+    
+    
+                <div class="toggle-switches">
+                    <div class="toggle" id="mlpBtn" onclick="toggleLEDsqns(1)" data-tooltip="The MLP Toggle Switch when switched ON, the
+                    left hand side VFD display's the current flow of
+                    MSU and MLP.">
+                        MLP
+                    </div>
+                    <div class="toggle" id="mpsBtn" onclick="toggleLEDsqns(2)" data-tooltip="The MPS Toggle Switch when switched ON, the
+                    left hand side VFD displays a voltage of 32 V ±
+                    2V. ">
+                        MPS
+                    </div>
+                    <div class="toggle" id="rruBtn" onclick="toggleLEDsqns(3)" data-tooltip="The RRU Toggle Switch when switched ON, the
+                    RRU and MSU will get a 32 V power supply
+                    through RCP.">
+                        RRU
+                    </div>
+                    <div class="toggle" id="rru5vBtn" onclick="toggleLEDsqns(4)" data-tooltip="The RRU 5 V Toggle Switch when switched ON
+                    the RRU will get a 5 V power supply through
+                    RCP.">
+                        RRU 5V
+                    </div>
+                    <div class="toggle" id="imBtn" onclick="toggleLED(5)" data-tooltip="The IM Toggle Switch when switched ON, the
+                    RCP unit is powered along with VFD's. The
+                    (VFD on left hand side) displays the voltage and
+                    current of missile and MLP">
+                        IM
+                    </div>
+                </div>
+    
+                <div class="toggle-switches">
+                    <div class="toggle" onclick="toggleOrangeLEDsqns(1,6)" data-tooltip="The M1 POWER Key Switch when turned ON,
+                    the actual Missile1 gets 32 V power supply from
+                    MPS or MSU-M1 will get 32 V power supply
+                    from MPS depending upon the connectivity.
+                    The left hand side VFD displays the current flow
+                    of MSL">
+                        M1 POWER
+                    </div>
+                    <div class="toggle" onclick="toggleOrangeLEDsqns(2,7)" data-tooltip="The M2 POWER Key Switch when turned ON,
+                    the actual missile 2 gets 32 V power supply
+                    from MPS or MSU-M2 will get 32 V power
+                    supply from MPS depending upon the
+                    connectivity. The left hand side VFD displays
+                    the current flow of MSL">
+                        M2 POWER
+                    </div>
+                    <div class="toggle" onclick="toggleOrangeLEDsqns(3,8)" data-tooltip="The M3 POWER Key Switch when turned ON,the actual missile3 gets 32 V power supply from
+                    MPS or MSU-M3 will get 32 V power supply
+                    from MPS depending upon the connectivity.
+                    The left hand side VFD displays the current flow
+                    of MSL">
+                        M3 POWER
+                    </div>
+                    <div class="toggle" onclick="toggleOrangeLEDsqns(4,9)" data-tooltip="The PYRO POWER Key Switch when turned
+                    ON the PYROPOWER will be given to either
+                    MSU or actual Missile depending upon the
+                    connectivity and is available to MSU-M1, MSU-
+                    M2 andMSU-M3 or the actual missile M1, M2
+                    and M3 which is selected by MLP.">
+                        PYRO POWER
+                    </div>
+                    <div class="toggle" onclick="toggleOrangeLED(5,10)" data-tooltip="The EM SAFE switch when switched ON a 32 V
+                    supply will be available to the missile through
+                    RRU.">
+                        EM SAFE
+                    </div>
+                </div>
+            </div>
+    
+            <div class="panel">
+                <div class="display-box" id="rightDisplay"></div>
+    
+                <div class="push-buttons">
+                    <div class="d-flex">
+                    <button class="push-button toggle" id="btn1" data-tooltip="KEYS 1 to 4 are functional keys used to select
+                        particular operation displayed on right VFD. " onclick="buttonFunction(1)">
+                        1
+                    </button>
+                    <button class="push-button toggle" id="btn2" data-tooltip="KEYS 1 to 4 are functional keys used to select
+                        particular operation displayed on right VFD. " onclick="buttonFunction(2)">
+                        2
+                    </button>
+                    <button class="push-button toggle" id="btn3" data-tooltip="KEYS 1 to 4 are functional keys used to select
+                        particular operation displayed on right VFD. " onclick="buttonFunction(3)">
+                        3
+                    </button>
+                    <button class="push-button toggle" id="btn4" data-tooltip="KEYS 1 to 4 are functional keys used to select
+                        particular operation displayed on right VFD." onclick="buttonFunction(4)">
+                        4
+                    </button>
+                    </div>
+                    <div class="d-flex">
+                    <button class="push-button toggle" id="btnPrev" data-tooltip="The LEFT and RIGHT arrow key are used for
+                    scrolling " onclick="buttonFunction('PREV')">
+                        Prev
+                    </button>
+                    <button class="push-button toggle" id="btnESC" data-tooltip=" The ESC key is used to go previous state of
+                    command. Once the escape command is
+                    selected the operator has to press ENT to
+                    execute the escape command." onclick="buttonFunction('ESC')">
+                        ESC
+                    </button>
+                    <button class="push-button toggle" id="btnENT" data-tooltip="The ENT key is used with function keys to
+                    execute the selected command. " onclick="buttonFunction('ENT')">
+                        ENT
+                    </button>
+                    <button class="push-button toggle" id="btnNext" data-tooltip="The LEFT and RIGHT arrow key are used for
+                    scrolling " onclick="buttonFunction('NEXT')">
+                        Next
+                    </button>
+                    </div>
+                    <!-- <button class="push-button toggle" id="btn1" data-tooltip="KEYS 1 to 4 are functional keys used to select
+                        particular operation displayed on right VFD. " onclick="buttonFunction(1)">
+                        1
+                    </button>
+                    <button class="push-button toggle" id="btn2" data-tooltip="KEYS 1 to 4 are functional keys used to select
+                        particular operation displayed on right VFD. " onclick="buttonFunction(2)">
+                        2
+                    </button>
+                    <button class="push-button toggle" id="btn3" data-tooltip="KEYS 1 to 4 are functional keys used to select
+                        particular operation displayed on right VFD. " onclick="buttonFunction(3)">
+                        3
+                    </button>
+                    <button class="push-button toggle" id="btn4" data-tooltip="KEYS 1 to 4 are functional keys used to select
+                        particular operation displayed on right VFD." onclick="buttonFunction(4)">
+                        4
+                    </button> -->
+                    <!-- <br /> -->
+                    <!-- <button class="push-button toggle" id="btnPrev" data-tooltip="The LEFT and RIGHT arrow key are used for
+                    scrolling " onclick="buttonFunction('PREV')">
+                        Prev
+                    </button>
+                    <button class="push-button toggle" id="btnESC" data-tooltip=" The ESC key is used to go previous state of
+                    command. Once the escape command is
+                    selected the operator has to press ENT to
+                    execute the escape command." onclick="buttonFunction('ESC')">
+                        ESC
+                    </button>
+                    <button class="push-button toggle" id="btnENT" data-tooltip="The ENT key is used with function keys to
+                    execute the selected command. " onclick="buttonFunction('ENT')">
+                        ENT
+                    </button>
+                    <button class="push-button toggle" id="btnNext" data-tooltip="The LEFT and RIGHT arrow key are used for
+                    scrolling " onclick="buttonFunction('NEXT')">
+                        Next
+                    </button> -->
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalMessage"></p>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>

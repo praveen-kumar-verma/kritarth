@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Missile Control Panel</title>
+    <style>
+                html, body {
+            height: 100%;
+            margin: 0;
+            overflow: hidden; 
+            background-image: url("miss.jpg") !important;
+            background-repeat: no-repeat;
+            background-size: cover;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            max-width: none;
+        }
+        #infoModal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 300px;
+        }
+
+        #infoModal .close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        /* Backdrop overlay */
+        #modalBackdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .container {
+            background-color: lightblue;
+            display: flex;
+            justify-content: center;
+            padding:100px 320px;
+
+           
+        }
+        .button1{
+            text-align: center;
+            margin-top: 20px;
+            padding:10px 20px  ;
+        }
+    </style>
+</head>
+
+<body class="d-flex justify-content-center align-items-center vh-100">
+    <div class="container p-5">
+        <div>
+            <div class="d-flex flex-column ">
+                <div class="form-check mb-2">
+                    <input class="form-check-input checklist" type="checkbox" id="checkbox1">
+                    <label class="form-check-label" for="checkbox1">MSU on</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input checklist" type="checkbox" id="checkbox2">
+                    <label class="form-check-label" for="checkbox2">MSIM supply for the desired missile</label>
+                </div>
+        
+                </div>
+                <div class="button1">
+
+                    <button id="proceedButton" class="btn btn-primary">Proceed</button>
+                </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div id="modalBackdrop"></div>
+    <div id="infoModal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p id="modalMessage">Please select all checklist items before proceeding.</p>
+    </div>
+
+    <script>
+        const checkboxes = document.querySelectorAll('.checklist');
+        const proceedButton = document.getElementById('proceedButton');
+        const modal = document.getElementById('infoModal');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+
+        const checkAllCompleted = () => {
+            return Array.from(checkboxes).every(checkbox => checkbox.checked);
+        };
+
+        const openModal = () => {
+            modal.style.display = 'block';
+            modalBackdrop.style.display = 'block';
+        };
+
+        const closeModal = () => {
+            modal.style.display = 'none';
+            modalBackdrop.style.display = 'none';
+        };
+
+        proceedButton.addEventListener('click', () => {
+            if (checkAllCompleted()) {
+                window.location.href = 'index2.html'; 
+            } else {
+                openModal();
+            }
+        });
+    </script>
+
+</body>
+
+</html>
